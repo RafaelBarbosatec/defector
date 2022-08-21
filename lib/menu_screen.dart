@@ -1,4 +1,3 @@
-import 'package:defector/dialog_congrats.dart';
 import 'package:defector/dialog_credits.dart';
 import 'package:flutter/material.dart';
 
@@ -45,8 +44,7 @@ class MenuScreen extends StatelessWidget {
                   child: DefectorButton(
                     text: 'Credits',
                     onPressed: () {
-                      // DialogCredits.show(context);
-                      DialogCongrats.show(context);
+                      DialogCredits.show(context);
                     },
                   ),
                 ),
