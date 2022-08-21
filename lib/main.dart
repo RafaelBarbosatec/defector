@@ -91,7 +91,7 @@ class Game extends StatelessWidget {
               ),
         },
       ),
-      player: LittleEvil(position: Vector2.all(32)),
+      player: LittleEvil(position: Vector2.all(48)),
       cameraConfig: CameraConfig(
         zoom: zoom,
       ),
