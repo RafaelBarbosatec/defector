@@ -11,6 +11,7 @@ import 'package:defector/enemies/imp.dart';
 import 'package:defector/enemies/skeleton.dart';
 import 'package:defector/enemies/skull.dart';
 import 'package:defector/interface/player_interface.dart';
+import 'package:defector/menu_screen.dart';
 import 'package:defector/player/iventory.dart';
 import 'package:defector/player/little_evil.dart';
 import 'package:defector/weapons/bow.dart';
@@ -30,8 +31,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Minecraft'),
-      home: const Game(),
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        fontFamily: 'Minecraft',
+      ),
+      routes: {
+        '/': (_) => const MenuScreen(),
+        'game': (_) => const Game(),
+      },
     );
   }
 }
@@ -103,6 +110,15 @@ class Game extends StatelessWidget {
         'player_interface': ((context, game) => PlayerInterface(game))
       },
       initialActiveOverlays: const ['player_interface'],
+      progress: const Center(
+        child: Material(
+          type: MaterialType.transparency,
+          child: Text(
+            'Loading',
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+        ),
+      ),
     );
   }
 }
