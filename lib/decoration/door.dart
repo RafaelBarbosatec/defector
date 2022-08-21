@@ -30,20 +30,25 @@ class Door extends GameDecoration with ObjectCollision {
       } else if (!showingDialog && collisionConfig?.enable == true) {
         component.idle();
         showingDialog = true;
-        TalkDialog.show(context, [
-          Say(
-            text: [
-              const TextSpan(
-                text: 'I think I need a key to get through here ...',
-                style: TextStyle(
-                  fontFamily: 'minecraft',
+        TalkDialog.show(
+          talkAlignment: Alignment.center,
+          context,
+          [
+            Say(
+              text: [
+                const TextSpan(
+                  text: 'I think I need a key to get through here ...',
+                  style: TextStyle(
+                    fontFamily: 'minecraft',
+                  ),
                 ),
-              ),
-            ],
-          )
-        ], onClose: () {
-          showingDialog = false;
-        });
+              ],
+            )
+          ],
+          onClose: () {
+            showingDialog = false;
+          },
+        );
       }
     }
     return super.onCollision(component, active);

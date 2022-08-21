@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/dialog_game_over.dart';
+import 'package:defector/enemies/boss.dart';
 import 'package:defector/player/iventory.dart';
 import 'package:defector/player/player_spritesheet.dart';
 import 'package:defector/weapons/weapon.dart';
@@ -8,6 +9,7 @@ import 'package:flutter/services.dart';
 
 class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
   late PlayerIventory iventory;
+  bool seeBoss = false;
   Weapon? weapon;
   LittleEvil({
     required super.position,
@@ -42,6 +44,20 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
   }
 
   @override
+  void update(double dt) {
+    if (!seeBoss) {
+      seeComponentType<Boss>(
+        observed: (boss) {
+          seeBoss = true;
+          _talkWithBoss(boss);
+        },
+        radiusVision: 150,
+      );
+    }
+    super.update(dt);
+  }
+
+  @override
   void onMount() {
     iventory = BonfireInjector.instance.get();
     gameRef.camera.target = null;
@@ -72,5 +88,32 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
   void onRemove() {
     DialogGameOver.show(context);
     super.onRemove();
+  }
+
+  void _talkWithBoss(List<Boss> boss) {
+    idle();
+    TalkDialog.show(context, [
+      Say(
+        text: [
+          TextSpan(
+            text: 'Finalmente te achei!',
+            style: TextStyle(
+              fontFamily: 'minicraft',
+            ),
+          ),
+        ],
+      ),
+      Say(text: [
+        TextSpan(
+          text: 'Cansei de seguir suas ordens! Você vai ter o que merece!',
+          style: TextStyle(
+            fontFamily: 'minicraft',
+          ),
+        ),
+      ]),
+    ], logicalKeyboardKeysToNext: [
+      LogicalKeyboardKey.space,
+      LogicalKeyboardKey.enter,
+    ]);
   }
 }

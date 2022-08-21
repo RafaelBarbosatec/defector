@@ -7,6 +7,7 @@ import 'package:defector/decoration/camera_sensor.dart';
 import 'package:defector/decoration/door.dart';
 import 'package:defector/decoration/key.dart';
 import 'package:defector/decoration/saw.dart';
+import 'package:defector/enemies/boss.dart';
 import 'package:defector/enemies/imp.dart';
 import 'package:defector/enemies/skeleton.dart';
 import 'package:defector/enemies/skull.dart';
@@ -76,30 +77,15 @@ class Game extends StatelessWidget {
                 position: prop.position,
                 size: prop.size,
               ),
-          'bow': (prop) => Bow(
-                position: prop.position,
-              ),
-          'imp': (prop) => Imp(
-                position: prop.position,
-              ),
-          'skeleton': (prop) => Skeleton(
-                position: prop.position,
-              ),
-          'skull': (prop) => Skull(
-                position: prop.position,
-              ),
-          'arrow': (prop) => Arrow(
-                position: prop.position,
-              ),
-          'door': (prop) => Door(
-                position: prop.position,
-              ),
-          'key': (prop) => DoorKey(
-                position: prop.position,
-              ),
-          'saw': (prop) => Saw(
-                position: prop.position,
-              ),
+          'bow': (prop) => Bow(position: prop.position),
+          'imp': (prop) => Imp(position: prop.position),
+          'skeleton': (prop) => Skeleton(position: prop.position),
+          'skull': (prop) => Skull(position: prop.position),
+          'arrow': (prop) => Arrow(position: prop.position),
+          'door': (prop) => Door(position: prop.position),
+          'key': (prop) => DoorKey(position: prop.position),
+          'saw': (prop) => Saw(position: prop.position),
+          'boss': (prop) => Boss(position: prop.position),
         },
       ),
       player: LittleEvil(position: Vector2.all(48)),

@@ -23,13 +23,16 @@ class Imp extends SimpleEnemy with ObjectCollision {
 
   @override
   void update(double dt) {
-    seeAndMoveToPlayer(
-      closePlayer: (p) {
-        simpleAttackMelee(damage: 10, size: size);
-      },
-      margin: 4,
-      radiusVision: 48,
-    );
+    if (!isDead) {
+      seeAndMoveToPlayer(
+        closePlayer: (p) {
+          simpleAttackMelee(damage: 10, size: size);
+        },
+        margin: 4,
+        radiusVision: 48,
+      );
+    }
+
     super.update(dt);
   }
 
