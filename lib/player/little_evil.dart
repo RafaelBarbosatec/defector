@@ -60,7 +60,7 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
   @override
   void onMount() {
     iventory = BonfireInjector.instance.get();
-    // gameRef.camera.target = null;
+    gameRef.camera.target = null;
     Future.delayed(const Duration(seconds: 1), _talkInitial);
     super.onMount();
   }
