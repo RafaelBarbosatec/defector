@@ -37,4 +37,13 @@ class DecorationSpriteSheet {
         srcSize: Vector2.all(8),
         srcPosition: Vector2(96, 32),
       );
+
+  static Future<SpriteAnimation> get saw => SpriteAnimation.load(
+      'objects/spritesheet_objects.png',
+      SpriteAnimationData.sequenced(
+        amount: 2,
+        stepTime: 0.4,
+        textureSize: Vector2.all(8),
+        texturePosition: Vector2(0, 8),
+      ));
 }

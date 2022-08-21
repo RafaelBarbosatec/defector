@@ -55,11 +55,13 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
 
   @override
   void die() {
+    movementByJoystickEnabled = false;
     animation?.playOnce(
       PlayerSpriteSheet.die,
+      runToTheEnd: true,
       onFinish: () {
-        weapon?.removeFromParent();
         removeFromParent();
+        weapon?.removeFromParent();
       },
     );
     super.die();

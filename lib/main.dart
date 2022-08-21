@@ -6,6 +6,7 @@ import 'package:defector/decoration/arrow.dart';
 import 'package:defector/decoration/camera_sensor.dart';
 import 'package:defector/decoration/door.dart';
 import 'package:defector/decoration/key.dart';
+import 'package:defector/decoration/saw.dart';
 import 'package:defector/enemies/imp.dart';
 import 'package:defector/enemies/skeleton.dart';
 import 'package:defector/enemies/skull.dart';
@@ -87,6 +88,9 @@ class Game extends StatelessWidget {
                 position: prop.position,
               ),
           'key': (prop) => DoorKey(
+                position: prop.position,
+              ),
+          'saw': (prop) => Saw(
                 position: prop.position,
               ),
         },

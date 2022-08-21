@@ -178,6 +178,50 @@
                  "width":8,
                  "x":120.107281962198,
                  "y":279.967602761024
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":14,
+                 "name":"saw",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":79.9801144382768,
+                 "y":103.682309382614
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":15,
+                 "name":"saw",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":55.9541021227768,
+                 "y":88.154458828703
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":16,
+                 "name":"saw",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":104.111206315344,
+                 "y":88.0826161790017
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":17,
+                 "name":"saw",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":31.973080455688,
+                 "y":103.901968689024
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -186,7 +230,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":14,
+ "nextobjectid":18,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
