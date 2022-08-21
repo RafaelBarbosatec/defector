@@ -30,7 +30,7 @@ class MenuScreen extends StatelessWidget {
                     text: 'Start',
                     onPressed: () {
                       Navigator.of(context).pushNamedAndRemoveUntil(
-                        'game',
+                        '/game',
                         (_) => false,
                       );
                     },
@@ -43,7 +43,9 @@ class MenuScreen extends StatelessWidget {
                   width: 200,
                   child: DefectorButton(
                     text: 'Credits',
-                    onPressed: () => DialogCredits.show(context),
+                    onPressed: () {
+                      DialogCredits.show(context);
+                    },
                   ),
                 ),
               ],
@@ -78,7 +80,10 @@ class DefectorButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextButton(
       onPressed: onPressed,
-      child: Text(text),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Text(text),
+      ),
       style: ButtonStyle(
         overlayColor: MaterialStateProperty.all(
           Colors.transparent,
@@ -102,7 +107,7 @@ class DefectorButton extends StatelessWidget {
           RoundedRectangleBorder(
             side: BorderSide(
               color: Colors.white,
-              width: 4,
+              width: 2,
             ),
           ),
         ),

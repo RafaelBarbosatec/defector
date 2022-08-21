@@ -11,7 +11,7 @@ class Saw extends GameDecoration with Sensor {
 
   @override
   void onContact(GameComponent component) {
-    if (component is SimplePlayer) {
+    if (component is SimplePlayer && !component.isDead) {
       component.receiveDamage(AttackFromEnum.ENEMY, 25, 'Saw');
     }
   }

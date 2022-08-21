@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 
 class DialogCredits extends StatelessWidget {
   static show(BuildContext context) {
-    showDialog(context: context, builder: (_) => DialogCredits());
+    showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (_) => const DialogCredits(),
+    );
   }
 
   const DialogCredits({Key? key}) : super(key: key);

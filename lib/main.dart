@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (_) => const MenuScreen(),
-        'game': (_) => const Game(),
+        '/game': (_) => const Game(),
       },
     );
   }

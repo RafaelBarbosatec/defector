@@ -45,6 +45,7 @@ class Bomb extends GameDecoration with Movement, Acceleration {
         e.receiveDamage(AttackFromEnum.ENEMY, 20, 'bomb');
       }
     });
+    gameRef.camera.shake(intensity: 2);
     playSpriteAnimationOnce(
       DecorationSpriteSheet.explosion,
       onFinish: removeFromParent,

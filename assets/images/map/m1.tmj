@@ -374,8 +374,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":4,
-                 "x":153.951985344496,
-                 "y":272.050483628991
+                 "x":318.045504060474,
+                 "y":191.955046288183
                 }, 
                 {
                  "class":"",
@@ -563,6 +563,28 @@
                  "width":8,
                  "x":415.991003574895,
                  "y":64.1834323729255
+                }, 
+                {
+                 "class":"",
+                 "height":16,
+                 "id":53,
+                 "name":"sensor",
+                 "rotation":0,
+                 "visible":true,
+                 "width":4,
+                 "x":154.115417743325,
+                 "y":271.392764857881
+                }, 
+                {
+                 "class":"",
+                 "height":16,
+                 "id":54,
+                 "name":"sensor",
+                 "rotation":0,
+                 "visible":true,
+                 "width":4,
+                 "x":318.010573602679,
+                 "y":39.7294701252341
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -571,7 +593,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":53,
+ "nextobjectid":55,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",

@@ -1,8 +1,10 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/decoration_spritesheet.dart';
 import 'package:defector/player/little_evil.dart';
+import 'package:flutter/material.dart';
 
 class Door extends GameDecoration with ObjectCollision {
+  bool showingDialog = false;
   Door({
     required super.position,
   }) : super.withSprite(
@@ -25,6 +27,23 @@ class Door extends GameDecoration with ObjectCollision {
         enableCollision(false);
         component.iventory.decrementKey();
         _changeSprite();
+      } else if (!showingDialog && collisionConfig?.enable == true) {
+        component.idle();
+        showingDialog = true;
+        TalkDialog.show(context, [
+          Say(
+            text: [
+              const TextSpan(
+                text: 'I think I need a key to get through here ...',
+                style: TextStyle(
+                  fontFamily: 'minecraft',
+                ),
+              ),
+            ],
+          )
+        ], onClose: () {
+          showingDialog = false;
+        });
       }
     }
     return super.onCollision(component, active);

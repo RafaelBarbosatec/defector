@@ -1,4 +1,5 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:defector/dialog_game_over.dart';
 import 'package:defector/player/iventory.dart';
 import 'package:defector/player/player_spritesheet.dart';
 import 'package:defector/weapons/weapon.dart';
@@ -65,5 +66,11 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
       },
     );
     super.die();
+  }
+
+  @override
+  void onRemove() {
+    DialogGameOver.show(context);
+    super.onRemove();
   }
 }
