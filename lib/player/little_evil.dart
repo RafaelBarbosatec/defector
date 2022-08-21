@@ -1,9 +1,12 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:defector/player/iventory.dart';
 import 'package:defector/player/player_spritesheet.dart';
 import 'package:defector/weapons/weapon.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-class LittleEvil extends SimplePlayer {
+class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
+  late PlayerIventory iventory;
   Weapon? weapon;
   LittleEvil({
     required super.position,
@@ -16,6 +19,16 @@ class LittleEvil extends SimplePlayer {
           speed: 50,
         ) {
     enabledDiagonalMovements = false;
+    setupCollision(
+      CollisionConfig(
+        collisions: [
+          CollisionArea.rectangle(
+            size: size * 0.8,
+            align: (size * 0.1),
+          ),
+        ],
+      ),
+    );
   }
 
   @override
@@ -29,13 +42,26 @@ class LittleEvil extends SimplePlayer {
 
   @override
   void onMount() {
+    iventory = BonfireInjector.instance.get();
     gameRef.camera.target = null;
     super.onMount();
   }
 
   @override
+  void receiveDamage(AttackFromEnum attacker, double damage, identify) {
+    super.receiveDamage(attacker, damage, identify);
+    notifyListeners();
+  }
+
+  @override
   void die() {
-    animation?.playOnce(PlayerSpriteSheet.die, onFinish: removeFromParent);
+    animation?.playOnce(
+      PlayerSpriteSheet.die,
+      onFinish: () {
+        weapon?.removeFromParent();
+        removeFromParent();
+      },
+    );
     super.die();
   }
 }

@@ -53,6 +53,9 @@ class Bow extends Weapon {
   @override
   void onContact(GameComponent component) {
     if (component is LittleEvil) {
+      if (followerTarget == null) {
+        component.iventory.incrementArrow(count: 5);
+      }
       _changeSprite(WeaponsSpriteSheet.bowInHand);
       followerTarget = component;
       component.weapon = this;
@@ -69,15 +72,20 @@ class Bow extends Weapon {
   @override
   void attack() {
     if (followerTarget != null) {
-      simpleAttackRangeByAngle(
-        damage: 10,
-        angle: (followerTarget as Movement).lastDirection.toRadians(),
-        size: size,
-        attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
-        animation: WeaponsSpriteSheet.arrow.toAnimation(),
-        marginFromOrigin: 0,
-        speed: 300,
-      );
+      LittleEvil player = followerTarget as LittleEvil;
+
+      if (player.iventory.arrowCount > 0) {
+        player.iventory.decrementArrow();
+        simpleAttackRangeByAngle(
+          damage: 10,
+          angle: player.lastDirection.toRadians(),
+          size: size,
+          attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+          animation: WeaponsSpriteSheet.arrow.toAnimation(),
+          marginFromOrigin: 0,
+          speed: 300,
+        );
+      }
     }
   }
 }

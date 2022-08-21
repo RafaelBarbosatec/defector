@@ -1,15 +1,23 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
+import 'package:defector/decoration/arrow.dart';
 import 'package:defector/decoration/camera_sensor.dart';
+import 'package:defector/decoration/door.dart';
+import 'package:defector/decoration/key.dart';
 import 'package:defector/enemies/imp.dart';
 import 'package:defector/enemies/skeleton.dart';
 import 'package:defector/enemies/skull.dart';
+import 'package:defector/interface/player_interface.dart';
+import 'package:defector/player/iventory.dart';
 import 'package:defector/player/little_evil.dart';
 import 'package:defector/weapons/bow.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 void main() {
+  BonfireInjector.instance.put((i) => PlayerIventory());
   runApp(const MyApp());
 }
 
@@ -21,9 +29,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'Minecraft'),
       home: const Game(),
     );
   }
@@ -37,8 +43,23 @@ class Game extends StatelessWidget {
     final size = MediaQuery.of(context).size;
     final maxSide = min(size.width, size.height);
     final zoom = maxSide / CameraSensor.sizeScreen;
+    Joystick joy = Joystick(
+      keyboardConfig: KeyboardConfig(),
+    );
+    if (Platform.isAndroid || Platform.isIOS) {
+      joy = Joystick(
+        directional: JoystickDirectional(color: Colors.grey),
+        actions: [
+          JoystickAction(
+            actionId: LogicalKeyboardKey.space.keyId,
+            margin: const EdgeInsets.all(40),
+            color: Colors.grey,
+          )
+        ],
+      );
+    }
     return BonfireTiledWidget(
-      joystick: Joystick(keyboardConfig: KeyboardConfig()),
+      joystick: joy,
       map: TiledWorldMap(
         'map/m1.tmj',
         forceTileSize: const Size(16, 16),
@@ -59,12 +80,25 @@ class Game extends StatelessWidget {
           'skull': (prop) => Skull(
                 position: prop.position,
               ),
+          'arrow': (prop) => Arrow(
+                position: prop.position,
+              ),
+          'door': (prop) => Door(
+                position: prop.position,
+              ),
+          'key': (prop) => DoorKey(
+                position: prop.position,
+              ),
         },
       ),
       player: LittleEvil(position: Vector2.all(32)),
       cameraConfig: CameraConfig(
         zoom: zoom,
       ),
+      overlayBuilderMap: {
+        'player_interface': ((context, game) => PlayerInterface(game))
+      },
+      initialActiveOverlays: const ['player_interface'],
     );
   }
 }

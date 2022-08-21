@@ -24,7 +24,9 @@ class Imp extends SimpleEnemy with ObjectCollision {
   @override
   void update(double dt) {
     seeAndMoveToPlayer(
-      closePlayer: (p) {},
+      closePlayer: (p) {
+        simpleAttackMelee(damage: 10, size: size);
+      },
       margin: 4,
     );
     super.update(dt);
@@ -32,7 +34,11 @@ class Imp extends SimpleEnemy with ObjectCollision {
 
   @override
   void die() {
-    animation?.playOnce(EnemiesSpriteSheet.impDie, onFinish: removeFromParent);
+    enableCollision(false);
+    animation?.playOnce(
+      EnemiesSpriteSheet.impDie,
+      onFinish: removeFromParent,
+    );
     super.die();
   }
 }

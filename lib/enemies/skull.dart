@@ -22,8 +22,23 @@ class Skull extends SimpleEnemy with ObjectCollision {
   }
 
   @override
+  void update(double dt) {
+    seeAndMoveToPlayer(
+      closePlayer: (p) {
+        simpleAttackMelee(damage: 10, size: size);
+      },
+      margin: 4,
+    );
+    super.update(dt);
+  }
+
+  @override
   void die() {
-    animation?.playOnce(EnemiesSpriteSheet.skullDie, onFinish: removeFromParent);
+    enableCollision(false);
+    animation?.playOnce(
+      EnemiesSpriteSheet.skullDie,
+      onFinish: removeFromParent,
+    );
     super.die();
   }
 }
