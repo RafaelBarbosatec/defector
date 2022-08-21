@@ -51,12 +51,24 @@ class MenuScreen extends StatelessWidget {
               ],
             ),
           ),
-          Align(
+          const Align(
             alignment: Alignment.bottomRight,
             child: Padding(
-              padding: const EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
               child: Text(
                 'v1.0.0',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ),
+          const Align(
+            alignment: Alignment.bottomCenter,
+            child: Padding(
+              padding: EdgeInsets.all(10.0),
+              child: Text(
+                'Use keyboard directional pad and\nspacebar to perform attack',
                 style: TextStyle(
                   color: Colors.white,
                 ),
