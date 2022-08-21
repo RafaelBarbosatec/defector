@@ -28,6 +28,7 @@ class Skull extends SimpleEnemy with ObjectCollision {
         simpleAttackMelee(damage: 10, size: size);
       },
       margin: 4,
+      radiusVision: 48,
     );
     super.update(dt);
   }
