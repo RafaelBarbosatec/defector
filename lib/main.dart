@@ -16,6 +16,7 @@ import 'package:defector/menu_screen.dart';
 import 'package:defector/player/iventory.dart';
 import 'package:defector/player/little_evil.dart';
 import 'package:defector/weapons/bow.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -55,18 +56,18 @@ class Game extends StatelessWidget {
     Joystick joy = Joystick(
       keyboardConfig: KeyboardConfig(),
     );
-    if (Platform.isAndroid || Platform.isIOS) {
-      joy = Joystick(
-        directional: JoystickDirectional(color: Colors.grey),
-        actions: [
-          JoystickAction(
-            actionId: LogicalKeyboardKey.space.keyId,
-            margin: const EdgeInsets.all(40),
-            color: Colors.grey,
-          )
-        ],
-      );
-    }
+    // if (!kIsWeb && Platform.isAndroid || Platform.isIOS) {
+    //   joy = Joystick(
+    //     directional: JoystickDirectional(color: Colors.grey),
+    //     actions: [
+    //       JoystickAction(
+    //         actionId: LogicalKeyboardKey.space.keyId,
+    //         margin: const EdgeInsets.all(40),
+    //         color: Colors.grey,
+    //       )
+    //     ],
+    //   );
+    // }
     return BonfireTiledWidget(
       joystick: joy,
       map: TiledWorldMap(
