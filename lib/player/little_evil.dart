@@ -60,7 +60,8 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
   @override
   void onMount() {
     iventory = BonfireInjector.instance.get();
-    gameRef.camera.target = null;
+    // gameRef.camera.target = null;
+    Future.delayed(const Duration(seconds: 1), _talkInitial);
     super.onMount();
   }
 
@@ -92,25 +93,108 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
 
   void _talkWithBoss(List<Boss> boss) {
     idle();
+    TalkDialog.show(
+      context,
+      [
+        Say(
+          text: [
+            TextSpan(
+              text: 'I finally found you!',
+              style: TextStyle(
+                fontFamily: 'Minecraft',
+              ),
+            ),
+          ],
+        ),
+        Say(text: [
+          TextSpan(
+            text: "I'm tired of following your orders! You will get what you deserve!",
+            style: TextStyle(
+              fontFamily: 'Minecraft',
+            ),
+          ),
+        ]),
+      ],
+      logicalKeyboardKeysToNext: [
+        LogicalKeyboardKey.space,
+        LogicalKeyboardKey.enter,
+      ],
+      onClose: (){
+        boss.first.position = boss.first.position.translate(boss.first.width * -1, 0);
+      }
+    );
+  }
+
+  void _talkInitial() {
+    idle();
     TalkDialog.show(context, [
       Say(
+        header: Container(
+          margin: EdgeInsets.only(bottom: 10),
+          color: Colors.black,
+          child: Text(
+            'Little devil',
+            style: TextStyle(
+              fontFamily: 'Minecraft',
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+        ),
         text: [
           TextSpan(
-            text: 'Finalmente te achei!',
+            text: "I can't take this little devil's life anymore!",
             style: TextStyle(
-              fontFamily: 'minicraft',
+              fontFamily: 'Minecraft',
             ),
           ),
         ],
       ),
-      Say(text: [
-        TextSpan(
-          text: 'Cansei de seguir suas ordens! Você vai ter o que merece!',
-          style: TextStyle(
-            fontFamily: 'minicraft',
+      Say(
+        header: Container(
+          margin: EdgeInsets.only(bottom: 10),
+          color: Colors.black,
+          child: Text(
+            'Little devil',
+            style: TextStyle(
+              fontFamily: 'Minecraft',
+              color: Colors.white,
+              fontSize: 18,
+            ),
           ),
         ),
-      ]),
+        text: [
+          TextSpan(
+            text:
+                'We only harm others and gain nothing in return. Our boss is exploiting us.',
+            style: TextStyle(
+              fontFamily: 'Minecraft',
+            ),
+          ),
+        ],
+      ),
+      Say(
+        header: Container(
+          margin: EdgeInsets.only(bottom: 10),
+          color: Colors.black,
+          child: Text(
+            'Little devil',
+            style: TextStyle(
+              fontFamily: 'Minecraft',
+              color: Colors.white,
+              fontSize: 18,
+            ),
+          ),
+        ),
+        text: [
+          TextSpan(
+            text: 'Time to end it! I will kill him!',
+            style: TextStyle(
+              fontFamily: 'Minecraft',
+            ),
+          ),
+        ],
+      ),
     ], logicalKeyboardKeysToNext: [
       LogicalKeyboardKey.space,
       LogicalKeyboardKey.enter,

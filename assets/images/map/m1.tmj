@@ -154,8 +154,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":24.0849246386617,
-                 "y":184.169806870761
+                 "x":71.9274875667559,
+                 "y":63.9508135231175
                 }, 
                 {
                  "class":"",
@@ -563,6 +563,28 @@
                  "width":4,
                  "x":318.010573602679,
                  "y":39.7294701252341
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":56,
+                 "name":"skull",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":88.0236741908988,
+                 "y":63.8629887964212
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":57,
+                 "name":"imp",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":23.8972069972759,
+                 "y":183.403590534642
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -571,7 +593,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":55,
+ "nextobjectid":58,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",

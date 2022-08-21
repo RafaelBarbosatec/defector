@@ -88,7 +88,7 @@ class Game extends StatelessWidget {
           'boss': (prop) => Boss(position: prop.position),
         },
       ),
-      player: LittleEvil(position: Vector2.all(48)),
+      player: LittleEvil(position: Vector2(680,48)),
       cameraConfig: CameraConfig(
         zoom: zoom,
       ),

@@ -71,6 +71,7 @@ class Boss extends SimpleEnemy with ObjectCollision {
 
   @override
   void onRemove() {
+    gameRef.player?.idle();
     DialogCongrats.show(context);
     super.onRemove();
   }
