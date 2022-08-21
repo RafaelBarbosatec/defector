@@ -52,6 +52,7 @@ class Skeleton extends SimpleEnemy with ObjectCollision {
     animation?.playOnce(
       EnemiesSpriteSheet.skeletonDie,
       onFinish: removeFromParent,
+      runToTheEnd: true,
     );
     super.die();
   }

@@ -39,6 +39,7 @@ class Skull extends SimpleEnemy with ObjectCollision {
     animation?.playOnce(
       EnemiesSpriteSheet.skullDie,
       onFinish: removeFromParent,
+      runToTheEnd: true,
     );
     super.die();
   }

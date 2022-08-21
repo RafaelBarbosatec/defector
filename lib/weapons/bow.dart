@@ -82,7 +82,7 @@ class Bow extends Weapon {
           size: size,
           attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
           animation: WeaponsSpriteSheet.arrow.toAnimation(),
-          marginFromOrigin: 0,
+          marginFromOrigin: -8,
           speed: 300,
         );
       }

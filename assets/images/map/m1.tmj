@@ -143,7 +143,7 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":79.9338249322115,
+                 "x":95.8064908787294,
                  "y":255.96965686487
                 }, 
                 {
@@ -238,7 +238,7 @@
                  "class":"",
                  "height":8,
                  "id":19,
-                 "name":"skull",
+                 "name":"imp",
                  "rotation":0,
                  "visible":true,
                  "width":8,
@@ -308,8 +308,8 @@
                  "rotation":0,
                  "visible":true,
                  "width":8,
-                 "x":199.561116458133,
-                 "y":127.616939364774
+                 "x":192.07525641599,
+                 "y":128.171447516044
                 }, 
                 {
                  "class":"",
@@ -354,6 +354,61 @@
                  "width":8,
                  "x":223.622714148219,
                  "y":55.9133782483157
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":32,
+                 "name":"arrow",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":82.1973942373404,
+                 "y":255.694451180529
+                }, 
+                {
+                 "class":"",
+                 "height":16,
+                 "id":33,
+                 "name":"sensor",
+                 "rotation":0,
+                 "visible":true,
+                 "width":4,
+                 "x":153.951985344496,
+                 "y":272.050483628991
+                }, 
+                {
+                 "class":"",
+                 "height":4,
+                 "id":34,
+                 "name":"sensor",
+                 "rotation":0,
+                 "visible":true,
+                 "width":16,
+                 "x":224.114304515293,
+                 "y":158.031053718529
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":35,
+                 "name":"arrow",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":176.049772285813,
+                 "y":127.959854684166
+                }, 
+                {
+                 "class":"",
+                 "height":8,
+                 "id":36,
+                 "name":"arrow",
+                 "rotation":0,
+                 "visible":true,
+                 "width":8,
+                 "x":288.225795719197,
+                 "y":103.851835421981
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -362,7 +417,7 @@
          "y":0
         }],
  "nextlayerid":3,
- "nextobjectid":32,
+ "nextobjectid":37,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.9.0",
