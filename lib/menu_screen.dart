@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/dialog_credits.dart';
+import 'package:defector/main.dart';
 import 'package:defector/util/sounds.dart';
 import 'package:defector/widgets/button.dart';
 import 'package:defector/widgets/radio.dart';
@@ -13,7 +14,6 @@ class MenuScreen extends StatefulWidget {
 }
 
 class _MenuScreenState extends State<MenuScreen> {
-  bool withKeyboard = true;
   @override
   void initState() {
     Sounds.stopBackgroundSound();
@@ -48,7 +48,6 @@ class _MenuScreenState extends State<MenuScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         '/game',
                         (_) => false,
-                        arguments: !withKeyboard,
                       );
                     },
                   ),
@@ -69,12 +68,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   height: 20,
                 ),
                 DefectorRadio(
-                  value: true,
-                  group: withKeyboard,
+                  value: false,
+                  group: Game.withJoystick,
                   label: 'Use Keyboard',
                   onChange: (_) {
                     setState(() {
-                      withKeyboard = true;
+                      Game.withJoystick = false;
                     });
                   },
                 ),
@@ -82,12 +81,12 @@ class _MenuScreenState extends State<MenuScreen> {
                   height: 10,
                 ),
                 DefectorRadio(
-                  value: false,
-                  group: withKeyboard,
+                  value: true,
+                  group: Game.withJoystick,
                   label: 'Use screen pads',
                   onChange: (_) {
                     setState(() {
-                      withKeyboard = false;
+                      Game.withJoystick = true;
                     });
                   },
                 ),
@@ -106,7 +105,7 @@ class _MenuScreenState extends State<MenuScreen> {
               ),
             ),
           ),
-          if (withKeyboard)
+          if (!Game.withJoystick)
             Align(
               alignment: Alignment.bottomCenter,
               child: Padding(

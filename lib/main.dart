@@ -40,18 +40,17 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (_) => const MenuScreen(),
-        '/game': (context) => Game(
-              withJoystick:
-                  ModalRoute.of(context)?.settings.arguments as bool? ?? false,
-            ),
+        '/game': (context) => Game(),
       },
     );
   }
 }
 
 class Game extends StatelessWidget {
-  final bool withJoystick;
-  const Game({Key? key, this.withJoystick = false}) : super(key: key);
+  static bool withJoystick = false;
+  const Game({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
