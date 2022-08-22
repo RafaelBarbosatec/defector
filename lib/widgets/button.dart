@@ -22,7 +22,10 @@ class DefectorButton extends StatelessWidget {
           return Colors.white;
         }),
         textStyle: MaterialStateProperty.all(
-          const TextStyle(fontSize: 20),
+          const TextStyle(
+            fontSize: 20,
+            fontFamily: 'Minecraft',
+          ),
         ),
         backgroundColor: MaterialStateProperty.resolveWith((states) {
           if (states.contains(MaterialState.pressed)) {
@@ -41,7 +44,9 @@ class DefectorButton extends StatelessWidget {
       ),
       child: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Text(text),
+        child: Text(
+          text,
+        ),
       ),
     );
   }

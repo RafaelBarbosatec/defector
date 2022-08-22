@@ -28,7 +28,7 @@ class Skull extends SimpleEnemy with ObjectCollision {
       seeAndMoveToPlayer(
         closePlayer: (p) {
           simpleAttackMelee(
-            damage: 10,
+            damage: 20,
             size: size,
             execute: () => Sounds.attackMelee(),
           );

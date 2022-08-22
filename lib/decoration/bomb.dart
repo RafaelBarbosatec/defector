@@ -43,7 +43,7 @@ class Bomb extends GameDecoration with Movement, Acceleration {
     );
     gameRef.visibleAttackables().forEach((e) {
       if (e.toRect().overlaps(rectExplosion)) {
-        e.receiveDamage(AttackFromEnum.ENEMY, 20, 'bomb');
+        e.receiveDamage(AttackFromEnum.ENEMY, 30, 'bomb');
       }
     });
     gameRef.camera.shake(intensity: 2);

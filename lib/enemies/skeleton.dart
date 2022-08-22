@@ -28,7 +28,7 @@ class Skeleton extends SimpleEnemy with ObjectCollision {
       seeAndMoveToAttackRange(
         radiusVision: 4 * 16,
         positioned: (player) {
-          if (checkInterval('bomb', 2000, dt)) {
+          if (checkInterval('bomb', 1500, dt)) {
             double distance = center.distanceTo(player.center);
             double bombSpeed = distance * 2;
             gameRef.add(

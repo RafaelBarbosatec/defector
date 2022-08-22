@@ -10,7 +10,7 @@ class Imp extends SimpleEnemy with ObjectCollision {
             idleRight: EnemiesSpriteSheet.impIdle,
             runRight: EnemiesSpriteSheet.impRun,
           ),
-          speed: 25,
+          speed: 30,
           life: 10,
         ) {
     setupCollision(
