@@ -40,7 +40,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/': (_) => const MenuScreen(),
-        '/game': (context) => Game(),
+        '/game': (context) => const Game(),
       },
     );
   }
@@ -78,11 +78,11 @@ class Game extends StatelessWidget {
         child: SizedBox(
           width: maxSide,
           height: maxSide,
-          child: BonfireTiledWidget(
+          child: BonfireWidget(
             joystick: joy,
-            map: TiledWorldMap(
+            map: WorldMapByTiled(
               'map/m1.tmj',
-              forceTileSize: const Size(16, 16),
+              forceTileSize: Vector2(16, 16),
               objectsBuilder: {
                 'sensor': (prop) => CameraSensor(
                       position: prop.position,
