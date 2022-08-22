@@ -9,8 +9,13 @@ class Sounds {
       'arrow_hit.wav',
       'meele_attack.wav',
       'explosion.wav',
+      'get_item.wav',
       'bg.mp3',
     ]);
+  }
+
+  static void getItem() {
+    FlameAudio.play('get_item.wav');
   }
 
   static void bowAttack() {

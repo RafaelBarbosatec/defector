@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/player/little_evil.dart';
+import 'package:defector/util/sounds.dart';
 import 'package:defector/weapons/weapons_sprite_sheet.dart';
 
 class Arrow extends GameDecoration with Sensor {
@@ -13,6 +14,7 @@ class Arrow extends GameDecoration with Sensor {
   @override
   void onContact(GameComponent component) {
     if (component is LittleEvil && !delivery) {
+      Sounds.getItem();
       delivery = true;
       component.iventory.incrementArrow(count: 5);
       removeFromParent();
