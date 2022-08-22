@@ -39,7 +39,7 @@ class Door extends GameDecoration with ObjectCollision {
                 const TextSpan(
                   text: 'I think I need a key to get through here ...',
                   style: TextStyle(
-                    fontFamily: 'minecraft',
+                    fontFamily: 'Minecraft',
                   ),
                 ),
               ],
