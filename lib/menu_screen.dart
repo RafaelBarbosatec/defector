@@ -28,7 +28,6 @@ class _MenuScreenState extends State<MenuScreen> {
         children: [
           Center(
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
@@ -49,7 +48,7 @@ class _MenuScreenState extends State<MenuScreen> {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         '/game',
                         (_) => false,
-                        arguments:!withKeyboard,
+                        arguments: !withKeyboard,
                       );
                     },
                   ),
