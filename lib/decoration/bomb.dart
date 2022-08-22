@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/decoration_spritesheet.dart';
+import 'package:defector/util/sounds.dart';
 import 'package:flutter/material.dart';
 
 class Bomb extends GameDecoration with Movement, Acceleration {
@@ -50,5 +51,6 @@ class Bomb extends GameDecoration with Movement, Acceleration {
       DecorationSpriteSheet.explosion,
       onFinish: removeFromParent,
     );
+    Sounds.explosion();
   }
 }

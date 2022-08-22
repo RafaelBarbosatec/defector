@@ -1,8 +1,24 @@
+import 'package:bonfire/bonfire.dart';
 import 'package:defector/dialog_credits.dart';
+import 'package:defector/util/sounds.dart';
+import 'package:defector/widgets/button.dart';
+import 'package:defector/widgets/radio.dart';
 import 'package:flutter/material.dart';
 
-class MenuScreen extends StatelessWidget {
+class MenuScreen extends StatefulWidget {
   const MenuScreen({Key? key}) : super(key: key);
+
+  @override
+  State<MenuScreen> createState() => _MenuScreenState();
+}
+
+class _MenuScreenState extends State<MenuScreen> {
+  bool withKeyboard = true;
+  @override
+  void initState() {
+    Sounds.stopBackgroundSound();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +28,7 @@ class MenuScreen extends StatelessWidget {
         children: [
           Center(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
@@ -32,6 +49,7 @@ class MenuScreen extends StatelessWidget {
                       Navigator.of(context).pushNamedAndRemoveUntil(
                         '/game',
                         (_) => false,
+                        arguments:!withKeyboard,
                       );
                     },
                   ),
@@ -48,6 +66,32 @@ class MenuScreen extends StatelessWidget {
                     },
                   ),
                 ),
+                SizedBox(
+                  height: 20,
+                ),
+                DefectorRadio(
+                  value: true,
+                  group: withKeyboard,
+                  label: 'Use Keyboard',
+                  onChange: (_) {
+                    setState(() {
+                      withKeyboard = true;
+                    });
+                  },
+                ),
+                const SizedBox(
+                  height: 10,
+                ),
+                DefectorRadio(
+                  value: false,
+                  group: withKeyboard,
+                  label: 'Use screen pads',
+                  onChange: (_) {
+                    setState(() {
+                      withKeyboard = false;
+                    });
+                  },
+                ),
               ],
             ),
           ),
@@ -63,66 +107,19 @@ class MenuScreen extends StatelessWidget {
               ),
             ),
           ),
-          const Align(
-            alignment: Alignment.bottomCenter,
-            child: Padding(
-              padding: EdgeInsets.all(10.0),
-              child: Text(
-                'Use keyboard directional pad and\nspacebar to perform attack',
-                style: TextStyle(
-                  color: Colors.white,
+          if (withKeyboard)
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: SizedBox(
+                  height: 80,
+                  width: 150,
+                  child: Sprite.load('keyboard_tip.png').asWidget(),
                 ),
               ),
-            ),
-          )
+            )
         ],
-      ),
-    );
-  }
-}
-
-class DefectorButton extends StatelessWidget {
-  final String text;
-  final VoidCallback? onPressed;
-
-  const DefectorButton({Key? key, required this.text, this.onPressed})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextButton(
-      onPressed: onPressed,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Text(text),
-      ),
-      style: ButtonStyle(
-        overlayColor: MaterialStateProperty.all(
-          Colors.transparent,
-        ),
-        foregroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return Colors.black;
-          }
-          return Colors.white;
-        }),
-        textStyle: MaterialStateProperty.all(
-          TextStyle(fontSize: 20),
-        ),
-        backgroundColor: MaterialStateProperty.resolveWith((states) {
-          if (states.contains(MaterialState.pressed)) {
-            return Colors.white;
-          }
-          return Colors.black;
-        }),
-        shape: MaterialStateProperty.all(
-          RoundedRectangleBorder(
-            side: BorderSide(
-              color: Colors.white,
-              width: 2,
-            ),
-          ),
-        ),
       ),
     );
   }

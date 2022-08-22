@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/player/little_evil.dart';
+import 'package:defector/util/sounds.dart';
 import 'package:defector/weapons/weapon.dart';
 import 'package:defector/weapons/weapons_sprite_sheet.dart';
 
@@ -75,6 +76,7 @@ class Bow extends Weapon {
       LittleEvil player = followerTarget as LittleEvil;
 
       if (player.iventory.arrowCount > 0) {
+        Sounds.bowAttack();
         player.iventory.decrementArrow();
         simpleAttackRangeByAngle(
           damage: 10,
@@ -84,6 +86,9 @@ class Bow extends Weapon {
           animation: WeaponsSpriteSheet.arrow.toAnimation(),
           marginFromOrigin: -8,
           speed: 300,
+          onDestroy: (){
+            Sounds.arrowHit();
+          }
         );
       }
     }

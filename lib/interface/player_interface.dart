@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/decoration_spritesheet.dart';
 import 'package:defector/player/iventory.dart';
@@ -35,8 +37,9 @@ class _PlayerInterfaceState extends State<PlayerInterface> {
   Widget build(BuildContext context) {
     LittleEvil? player = widget.game.player as LittleEvil?;
     final size = MediaQuery.of(context).size;
+    final minSide = min(size.width, size.height);
     final lifePlayer = player?.life ?? 0;
-    double barWidth = size.width / 4;
+    double barWidth = minSide / 4;
 
     double lifeBar = (lifePlayer / 100) * barWidth;
     if (lifeBar < 0) {

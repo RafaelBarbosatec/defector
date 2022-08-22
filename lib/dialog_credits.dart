@@ -1,4 +1,5 @@
 import 'package:defector/menu_screen.dart';
+import 'package:defector/widgets/button.dart';
 import 'package:flutter/material.dart';
 
 class DialogCredits extends StatelessWidget {

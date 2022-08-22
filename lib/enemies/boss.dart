@@ -2,6 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/bomb.dart';
 import 'package:defector/dialog_congrats.dart';
 import 'package:defector/enemies/enemies_spritesheet.dart';
+import 'package:defector/util/sounds.dart';
 
 class Boss extends SimpleEnemy with ObjectCollision {
   Boss({required super.position})
@@ -28,7 +29,11 @@ class Boss extends SimpleEnemy with ObjectCollision {
     if (!isDead) {
       seeAndMoveToPlayer(
         closePlayer: (p) {
-          simpleAttackMelee(damage: 30, size: size);
+          simpleAttackMelee(
+            damage: 30,
+            size: size,
+            execute: () => Sounds.attackMelee(),
+          );
         },
         margin: 4,
         radiusVision: 75,

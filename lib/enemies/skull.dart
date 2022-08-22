@@ -1,5 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/enemies/enemies_spritesheet.dart';
+import 'package:defector/util/sounds.dart';
 
 class Skull extends SimpleEnemy with ObjectCollision {
   Skull({required super.position})
@@ -26,7 +27,11 @@ class Skull extends SimpleEnemy with ObjectCollision {
     if (!isDead) {
       seeAndMoveToPlayer(
         closePlayer: (p) {
-          simpleAttackMelee(damage: 10, size: size);
+          simpleAttackMelee(
+            damage: 10,
+            size: size,
+            execute: () => Sounds.attackMelee(),
+          );
         },
         margin: 4,
         radiusVision: 48,
