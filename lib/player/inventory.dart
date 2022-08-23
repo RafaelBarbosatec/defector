@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class PlayerIventory extends ChangeNotifier {
+class PlayerInventory extends ChangeNotifier {
   int _arrowCount = 0;
   int _keyCount = 0;
 

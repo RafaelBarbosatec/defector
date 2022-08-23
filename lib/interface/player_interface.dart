@@ -1,9 +1,9 @@
 import 'dart:math';
 
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/decoration/decoration_spritesheet.dart';
-import 'package:defector/player/iventory.dart';
+import 'package:defector/player/inventory.dart';
 import 'package:defector/player/little_evil.dart';
+import 'package:defector/spritesheets/decoration_spritesheet.dart';
 import 'package:defector/weapons/weapons_sprite_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +16,7 @@ class PlayerInterface extends StatefulWidget {
 }
 
 class _PlayerInterfaceState extends State<PlayerInterface> {
-  late PlayerIventory iventory;
+  late PlayerInventory iventory;
 
   @override
   void initState() {

@@ -1,7 +1,7 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/bomb.dart';
 import 'package:defector/widgets/dialog_congrats.dart';
-import 'package:defector/enemies/enemies_spritesheet.dart';
+import 'package:defector/spritesheets/enemies_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
 
 class Boss extends SimpleEnemy with ObjectCollision {

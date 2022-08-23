@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/decoration/decoration_spritesheet.dart';
+import 'package:defector/spritesheets/decoration_spritesheet.dart';
 import 'package:defector/player/little_evil.dart';
 
 class DoorKey extends GameDecoration with Sensor {

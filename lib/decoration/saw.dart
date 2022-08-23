@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/decoration/decoration_spritesheet.dart';
+import 'package:defector/spritesheets/decoration_spritesheet.dart';
 
 class Saw extends GameDecoration with Sensor {
   Saw({

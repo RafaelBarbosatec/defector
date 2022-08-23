@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/enemies/enemies_spritesheet.dart';
+import 'package:defector/spritesheets/enemies_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
 
 class Imp extends SimpleEnemy with ObjectCollision {

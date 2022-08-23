@@ -12,7 +12,7 @@ import 'package:defector/enemies/skeleton.dart';
 import 'package:defector/enemies/skull.dart';
 import 'package:defector/interface/player_interface.dart';
 import 'package:defector/menu_screen.dart';
-import 'package:defector/player/iventory.dart';
+import 'package:defector/player/inventory.dart';
 import 'package:defector/player/little_evil.dart';
 import 'package:defector/util/sounds.dart';
 import 'package:defector/weapons/bow.dart';
@@ -21,7 +21,7 @@ import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  BonfireInjector.instance.put((i) => PlayerIventory());
+  BonfireInjector.instance.put((i) => PlayerInventory());
   Sounds.initialize();
   runApp(const MyApp());
 }

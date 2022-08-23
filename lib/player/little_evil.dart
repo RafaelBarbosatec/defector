@@ -1,14 +1,14 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/widgets/dialog_game_over.dart';
 import 'package:defector/enemies/boss.dart';
-import 'package:defector/player/iventory.dart';
-import 'package:defector/player/player_spritesheet.dart';
+import 'package:defector/player/inventory.dart';
+import 'package:defector/spritesheets/player_spritesheet.dart';
 import 'package:defector/weapons/weapon.dart';
+import 'package:defector/widgets/dialog_game_over.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
-  late PlayerIventory iventory;
+  late PlayerInventory iventory;
   bool seeBoss = false;
   Weapon? weapon;
   LittleEvil({
@@ -93,36 +93,33 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
 
   void _talkWithBoss(List<Boss> boss) {
     idle();
-    TalkDialog.show(
-      context,
-      [
-        Say(
-          text: [
-            TextSpan(
-              text: 'I finally found you!',
-              style: TextStyle(
-                fontFamily: 'Minecraft',
-              ),
-            ),
-          ],
-        ),
-        Say(text: [
+    TalkDialog.show(context, [
+      Say(
+        text: [
           TextSpan(
-            text: "I'm tired of following your orders! You will get what you deserve!",
+            text: 'I finally found you!',
             style: TextStyle(
               fontFamily: 'Minecraft',
             ),
           ),
-        ]),
-      ],
-      logicalKeyboardKeysToNext: [
-        LogicalKeyboardKey.space,
-        LogicalKeyboardKey.enter,
-      ],
-      onClose: (){
-        boss.first.position = boss.first.position.translate(boss.first.width * -1, 0);
-      }
-    );
+        ],
+      ),
+      Say(text: [
+        TextSpan(
+          text:
+              "I'm tired of following your orders! You will get what you deserve!",
+          style: TextStyle(
+            fontFamily: 'Minecraft',
+          ),
+        ),
+      ]),
+    ], logicalKeyboardKeysToNext: [
+      LogicalKeyboardKey.space,
+      LogicalKeyboardKey.enter,
+    ], onClose: () {
+      boss.first.position =
+          boss.first.position.translate(boss.first.width * -1, 0);
+    });
   }
 
   void _talkInitial() {

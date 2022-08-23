@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/decoration/decoration_spritesheet.dart';
+import 'package:defector/spritesheets/decoration_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
 import 'package:flutter/material.dart';
 

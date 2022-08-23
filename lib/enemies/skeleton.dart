@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/bomb.dart';
-import 'package:defector/enemies/enemies_spritesheet.dart';
+import 'package:defector/spritesheets/enemies_spritesheet.dart';
 
 class Skeleton extends SimpleEnemy with ObjectCollision {
   Skeleton({required super.position})
