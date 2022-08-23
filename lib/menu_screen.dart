@@ -1,5 +1,5 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/dialog_credits.dart';
+import 'package:defector/widgets/dialog_credits.dart';
 import 'package:defector/main.dart';
 import 'package:defector/util/sounds.dart';
 import 'package:defector/widgets/button.dart';

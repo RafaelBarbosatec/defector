@@ -1,6 +1,6 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/bomb.dart';
-import 'package:defector/dialog_congrats.dart';
+import 'package:defector/widgets/dialog_congrats.dart';
 import 'package:defector/enemies/enemies_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
 
