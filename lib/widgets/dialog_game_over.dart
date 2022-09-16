@@ -1,4 +1,3 @@
-import 'package:defector/menu_screen.dart';
 import 'package:defector/widgets/button.dart';
 import 'package:flutter/material.dart';
 
@@ -31,16 +30,14 @@ class DialogGameOver extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              const Text(
                 'Game Over',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 24,
                 ),
               ),
-              SizedBox(
-                height: 40,
-              ),
+              const SizedBox(height: 40),
               SizedBox(
                 width: 200,
                 child: DefectorButton(
@@ -53,9 +50,7 @@ class DialogGameOver extends StatelessWidget {
                   },
                 ),
               ),
-              SizedBox(
-                height: 10,
-              ),
+              const SizedBox(height: 10),
               SizedBox(
                 width: 200,
                 child: DefectorButton(

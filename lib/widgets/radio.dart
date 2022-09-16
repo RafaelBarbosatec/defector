@@ -31,12 +31,12 @@ class DefectorRadio<T> extends StatelessWidget {
             ),
           ),
           if (label != null) ...[
-            SizedBox(
-              width: 10,
+            const SizedBox(
+              width: 10
             ),
             Text(
               label!,
-              style: TextStyle(color: Colors.white),
+              style: const TextStyle(color: Colors.white),
             ),
           ]
         ],

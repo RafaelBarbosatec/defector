@@ -95,7 +95,7 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
     idle();
     TalkDialog.show(context, [
       Say(
-        text: [
+        text: const [
           TextSpan(
             text: 'I finally found you!',
             style: TextStyle(
@@ -104,15 +104,17 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
           ),
         ],
       ),
-      Say(text: [
-        TextSpan(
-          text:
-              "I'm tired of following your orders! You will get what you deserve!",
-          style: TextStyle(
-            fontFamily: 'Minecraft',
+      Say(
+        text: const [
+          TextSpan(
+            text:
+                "I'm tired of following your orders! You will get what you deserve!",
+            style: TextStyle(
+              fontFamily: 'Minecraft',
+            ),
           ),
-        ),
-      ]),
+        ],
+      ),
     ], logicalKeyboardKeysToNext: [
       LogicalKeyboardKey.space,
       LogicalKeyboardKey.enter,
@@ -127,9 +129,9 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
     TalkDialog.show(context, [
       Say(
         header: Container(
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           color: Colors.black,
-          child: Text(
+          child: const Text(
             'Little devil',
             style: TextStyle(
               fontFamily: 'Minecraft',
@@ -138,7 +140,7 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
             ),
           ),
         ),
-        text: [
+        text: const [
           TextSpan(
             text: "I can't take this little devil's life anymore!",
             style: TextStyle(
@@ -149,9 +151,9 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
       ),
       Say(
         header: Container(
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           color: Colors.black,
-          child: Text(
+          child: const Text(
             'Little devil',
             style: TextStyle(
               fontFamily: 'Minecraft',
@@ -160,7 +162,7 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
             ),
           ),
         ),
-        text: [
+        text: const [
           TextSpan(
             text:
                 'We only harm others and gain nothing in return. Our boss is exploiting us.',
@@ -172,9 +174,9 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
       ),
       Say(
         header: Container(
-          margin: EdgeInsets.only(bottom: 10),
+          margin: const EdgeInsets.only(bottom: 10),
           color: Colors.black,
-          child: Text(
+          child: const Text(
             'Little devil',
             style: TextStyle(
               fontFamily: 'Minecraft',
@@ -183,7 +185,7 @@ class LittleEvil extends SimplePlayer with ObjectCollision, ChangeNotifier {
             ),
           ),
         ),
-        text: [
+        text: const [
           TextSpan(
             text: 'Time to end it! I will kill him!',
             style: TextStyle(

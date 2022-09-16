@@ -1,8 +1,8 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/widgets/dialog_credits.dart';
 import 'package:defector/main.dart';
 import 'package:defector/util/sounds.dart';
 import 'package:defector/widgets/button.dart';
+import 'package:defector/widgets/dialog_credits.dart';
 import 'package:defector/widgets/radio.dart';
 import 'package:flutter/material.dart';
 
@@ -30,16 +30,14 @@ class _MenuScreenState extends State<MenuScreen> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(
+                const Text(
                   'Defector',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 40,
                   ),
                 ),
-                SizedBox(
-                  height: 50,
-                ),
+                const SizedBox(height: 50),
                 SizedBox(
                   width: 200,
                   child: DefectorButton(
@@ -52,9 +50,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     },
                   ),
                 ),
-                SizedBox(
-                  height: 10,
-                ),
+                const SizedBox(height: 10),
                 SizedBox(
                   width: 200,
                   child: DefectorButton(
@@ -64,9 +60,7 @@ class _MenuScreenState extends State<MenuScreen> {
                     },
                   ),
                 ),
-                SizedBox(
-                  height: 20,
-                ),
+                const SizedBox(height: 20),
                 DefectorRadio(
                   value: false,
                   group: Game.withJoystick,

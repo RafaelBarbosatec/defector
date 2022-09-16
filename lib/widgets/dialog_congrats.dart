@@ -1,4 +1,3 @@
-
 import 'package:defector/widgets/button.dart';
 import 'package:flutter/material.dart';
 
@@ -38,9 +37,7 @@ class DialogCongrats extends StatelessWidget {
                   fontSize: 30,
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
+              const SizedBox(height: 20),
               const Text(
                 'Thank you so much!\nYou have eliminated the great evil from our world!',
                 textAlign: TextAlign.center,
@@ -48,9 +45,7 @@ class DialogCongrats extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               DefectorButton(
                 text: 'you are welcome',
                 onPressed: () {

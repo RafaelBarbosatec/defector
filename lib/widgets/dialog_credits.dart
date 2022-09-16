@@ -1,4 +1,3 @@
-import 'package:defector/menu_screen.dart';
 import 'package:defector/widgets/button.dart';
 import 'package:flutter/material.dart';
 
@@ -88,34 +87,28 @@ class DialogCredits extends StatelessWidget {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
-                height: 20,
-              ),
-              Text(
+              const SizedBox(height: 20),
+              const Text(
                 'Package gamedev:',
                 style: TextStyle(
                   color: Colors.white,
                   decoration: TextDecoration.underline,
                 ),
               ),
-              SizedBox(
-                height: 5,
-              ),
-              Text(
+              const SizedBox(height: 5),
+              const Text(
                 'Bonfire',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
-              Text(
+              const Text(
                 'https://bonfire-engine.github.io',
                 style: TextStyle(
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
-                height: 30,
-              ),
+              const SizedBox(height: 30),
               SizedBox(
                 width: 200,
                 child: DefectorButton(
