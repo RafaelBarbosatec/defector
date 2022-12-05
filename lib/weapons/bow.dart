@@ -20,22 +20,22 @@ class Bow extends Weapon {
       switch ((followerTarget as Movement).lastDirection) {
         case Direction.left:
           followerOffset = Vector2(size.x * -1, 0);
-          isFlipHorizontal = true;
+          isFlipHorizontally = true;
           angle = 0;
           break;
         case Direction.right:
           followerOffset = Vector2(size.x, 0);
-          isFlipHorizontal = false;
+          isFlipHorizontally = false;
           angle = 0;
           break;
         case Direction.up:
           angle = pi / 2;
-          isFlipHorizontal = true;
+          isFlipHorizontally = true;
           followerOffset = Vector2(0, size.y * -1);
           break;
         case Direction.down:
           followerOffset = Vector2(0, size.y);
-          isFlipHorizontal = false;
+          isFlipHorizontally = false;
           angle = pi / 2;
           break;
         case Direction.upLeft:

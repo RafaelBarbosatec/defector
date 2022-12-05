@@ -56,7 +56,6 @@ class Game extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     final maxSide = min(size.width, size.height);
-    final zoom = maxSide / CameraSensor.sizeScreen;
     Joystick joy = Joystick(
       keyboardConfig: KeyboardConfig(),
     );
@@ -101,7 +100,7 @@ class Game extends StatelessWidget {
             ),
             player: LittleEvil(position: Vector2.all(48)),
             cameraConfig: CameraConfig(
-              zoom: zoom,
+              setZoomLimitToFitMap: true,
             ),
             overlayBuilderMap: {
               'player_interface': ((context, game) => PlayerInterface(game))
