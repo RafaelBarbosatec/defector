@@ -2,7 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:defector/spritesheets/enemies_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
 
-class Imp extends SimpleEnemy with ObjectCollision {
+class Imp extends SimpleEnemy with BlockMovementCollision {
   Imp({required super.position})
       : super(
           size: Vector2.all(16),
@@ -12,14 +12,12 @@ class Imp extends SimpleEnemy with ObjectCollision {
           ),
           speed: 30,
           life: 10,
-        ) {
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(size: size),
-        ],
-      ),
-    );
+        );
+
+  @override
+  Future<void> onLoad() {
+    add(RectangleHitbox(size: size));
+    return super.onLoad();
   }
 
   @override
@@ -43,7 +41,6 @@ class Imp extends SimpleEnemy with ObjectCollision {
 
   @override
   void die() {
-    enableCollision(false);
     animation?.playOnce(
       EnemiesSpriteSheet.impDie,
       onFinish: removeFromParent,

@@ -1,10 +1,10 @@
 import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/bomb.dart';
-import 'package:defector/widgets/dialog_congrats.dart';
 import 'package:defector/spritesheets/enemies_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
+import 'package:defector/widgets/dialog_congrats.dart';
 
-class Boss extends SimpleEnemy with ObjectCollision {
+class Boss extends SimpleEnemy with BlockMovementCollision {
   Boss({required super.position})
       : super(
           size: Vector2.all(32),
@@ -14,14 +14,12 @@ class Boss extends SimpleEnemy with ObjectCollision {
           ),
           speed: 50,
           life: 100,
-        ) {
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(size: size),
-        ],
-      ),
-    );
+        );
+
+  @override
+  Future<void> onLoad() {
+    add(RectangleHitbox(size: size));
+    return super.onLoad();
   }
 
   @override
@@ -65,7 +63,6 @@ class Boss extends SimpleEnemy with ObjectCollision {
 
   @override
   void die() {
-    enableCollision(false);
     animation?.playOnce(
       EnemiesSpriteSheet.bossDie,
       onFinish: removeFromParent,

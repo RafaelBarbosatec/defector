@@ -1,8 +1,9 @@
 import 'package:bonfire/bonfire.dart';
-import 'package:defector/spritesheets/decoration_spritesheet.dart';
 import 'package:defector/player/little_evil.dart';
+import 'package:defector/spritesheets/decoration_spritesheet.dart';
+import 'package:defector/util/sounds.dart';
 
-class DoorKey extends GameDecoration with Sensor {
+class DoorKey extends GameDecoration with Sensor<LittleEvil> {
   bool delivery = false;
   DoorKey({required super.position})
       : super.withSprite(
@@ -11,9 +12,10 @@ class DoorKey extends GameDecoration with Sensor {
         );
 
   @override
-  void onContact(GameComponent component) {
-    if (component is LittleEvil && !delivery) {
+  void onContact(LittleEvil component) {
+    if (!delivery) {
       delivery = true;
+      Sounds.getItem();
       component.iventory.incrementKey();
       removeFromParent();
     }
