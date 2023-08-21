@@ -54,7 +54,7 @@ class Bomb extends GameDecoration
 
   bool isStoped() {
     if (canExplod) {
-      return lastDisplacement.x.abs() < 0.1 && lastDisplacement.y.abs() < 0.1;
+      return velocity.x.abs() < 1 && velocity.y.abs() < 1;
     }
     return false;
   }
