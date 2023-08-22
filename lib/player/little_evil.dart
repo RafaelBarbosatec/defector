@@ -24,7 +24,9 @@ class LittleEvil extends SimplePlayer
             runRight: PlayerSpriteSheet.run,
           ),
           speed: 50,
-        );
+        ) {
+    setupMovementByJoystick(diagonalEnabled: false);
+  }
 
   void setWeapon(Weapon w) {
     _weapon = w;
@@ -77,7 +79,6 @@ class LittleEvil extends SimplePlayer
   void onMount() {
     iventory = BonfireInjector.instance.get();
     iventory.reset();
-    gameRef.bonfireCamera.stop();
     Future.delayed(Duration.zero, _talkInitial);
     super.onMount();
   }

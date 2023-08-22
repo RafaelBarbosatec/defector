@@ -25,16 +25,17 @@ class Skeleton extends SimpleEnemy with BlockMovementCollision {
     if (!isDead) {
       seeAndMoveToAttackRange(
         radiusVision: 4 * 16,
-        positioned: (player) {
+        positioned: (p0) {},
+        observed: () {
           if (checkInterval('bomb', 1500, dt)) {
-            double distance = center.distanceTo(player.center);
+            double distance = center.distanceTo(gameRef.player!.center);
             double bombSpeed = distance * 2;
             gameRef.add(
               Bomb(
                 position: position,
                 angleDirection: BonfireUtil.angleBetweenPoints(
                   center,
-                  player.center,
+                  gameRef.player!.center,
                 ),
                 speed: bombSpeed,
               ),

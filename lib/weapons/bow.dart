@@ -8,7 +8,6 @@ import 'package:defector/weapons/weapons_sprite_sheet.dart';
 
 class Bow extends Weapon {
   bool delivered = false;
-  LittleEvil? target;
   Bow({
     required super.position,
   }) : super(
@@ -16,7 +15,7 @@ class Bow extends Weapon {
           sprite: WeaponsSpriteSheet.bowInFloor,
         );
 
-  LittleEvil? get user => target;
+  LittleEvil? get user => followerTarget as  LittleEvil?;
 
   @override
   void update(double dt) {
@@ -63,10 +62,8 @@ class Bow extends Weapon {
       Sounds.getItem();
       component.setWeapon(this);
       component.iventory.incrementArrow(count: 5);
-      
       _changeSprite(WeaponsSpriteSheet.bowInHand);
-      target = component;
-      setupFollower(target: target);
+      setupFollower(target: component);
     }
   }
 

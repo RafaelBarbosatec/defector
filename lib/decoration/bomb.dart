@@ -52,13 +52,6 @@ class Bomb extends GameDecoration
     super.update(dt);
   }
 
-  bool isStoped() {
-    if (canExplod) {
-      return velocity.x.abs() < 1 && velocity.y.abs() < 1;
-    }
-    return false;
-  }
-
   @override
   void onMount() {
     moveFromAngle(angleDirection);
@@ -76,7 +69,7 @@ class Bomb extends GameDecoration
         e.receiveDamage(AttackFromEnum.ENEMY, 30, 'bomb');
       }
     });
-    gameRef.bonfireCamera.shake(intensity: 2);
+    gameRef.bonfireCamera.shake(intensity: 1);
     playSpriteAnimationOnce(
       DecorationSpriteSheet.explosion,
       onFinish: removeFromParent,

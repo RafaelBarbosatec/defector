@@ -102,6 +102,7 @@ class Game extends StatelessWidget {
             cameraConfig: CameraConfig(
               moveOnlyMapArea: true,
               zoom: getGameZoom(MediaQuery.of(context).size.toVector2()),
+              startFollowPlayer: false,
             ),
             overlayBuilderMap: {
               'player_interface': ((context, game) => PlayerInterface(game))
