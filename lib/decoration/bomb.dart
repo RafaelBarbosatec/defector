@@ -7,7 +7,6 @@ class Bomb extends GameDecoration
     with Movement, HandleForces, BlockMovementCollision {
   final double angleDirection;
   bool exploded = false;
-  bool canExplod = false;
   Bomb({
     required super.position,
     required this.angleDirection,
@@ -39,17 +38,6 @@ class Bomb extends GameDecoration
       return false;
     }
     return super.onBlockMovement(intersectionPoints, other);
-  }
-
-  @override
-  void update(double dt) {
-    if (isStoped() && !exploded) {
-      _explode();
-    }
-    if (lastDisplacement != Vector2.zero()) {
-      canExplod = true;
-    }
-    super.update(dt);
   }
 
   @override

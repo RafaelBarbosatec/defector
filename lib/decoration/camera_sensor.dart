@@ -2,7 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:defector/player/little_evil.dart';
 
 class CameraSensor extends GameDecoration with Sensor<LittleEvil> {
-  static const sizeScreen = 304.0;
+  static const sizeScreen = 288.0;
 
   bool canMove = true;
 

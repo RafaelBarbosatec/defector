@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 class Door extends GameDecoration {
   bool showingDialog = false;
+  bool oppend = false;
   Door({
     required super.position,
   }) : super.withSprite(
@@ -20,11 +21,12 @@ class Door extends GameDecoration {
 
   @override
   void onCollision(Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (isRemoving) {
+    if (isRemoving || oppend) {
       return;
     }
     if (other is LittleEvil) {
       if (other.iventory.keyCount > 0) {
+        oppend = true;
         other.iventory.decrementKey();
         _changeSprite();
       } else if (!showingDialog) {
