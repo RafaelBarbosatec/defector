@@ -26,4 +26,10 @@ class PlayerInventory extends ChangeNotifier {
     _keyCount -= count;
     notifyListeners();
   }
+
+  void reset() {
+    _arrowCount = 0;
+    _keyCount = 0;
+    notifyListeners();
+  }
 }

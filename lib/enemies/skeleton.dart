@@ -2,7 +2,7 @@ import 'package:bonfire/bonfire.dart';
 import 'package:defector/decoration/bomb.dart';
 import 'package:defector/spritesheets/enemies_spritesheet.dart';
 
-class Skeleton extends SimpleEnemy with ObjectCollision {
+class Skeleton extends SimpleEnemy with BlockMovementCollision {
   Skeleton({required super.position})
       : super(
           size: Vector2.all(16),
@@ -12,14 +12,12 @@ class Skeleton extends SimpleEnemy with ObjectCollision {
           ),
           speed: 40,
           life: 50,
-        ) {
-    setupCollision(
-      CollisionConfig(
-        collisions: [
-          CollisionArea.rectangle(size: size),
-        ],
-      ),
-    );
+        );
+
+  @override
+  Future<void> onLoad() {
+    add(RectangleHitbox(size: size));
+    return super.onLoad();
   }
 
   @override
@@ -27,16 +25,17 @@ class Skeleton extends SimpleEnemy with ObjectCollision {
     if (!isDead) {
       seeAndMoveToAttackRange(
         radiusVision: 4 * 16,
-        positioned: (player) {
+        positioned: (p0) {},
+        observed: () {
           if (checkInterval('bomb', 1500, dt)) {
-            double distance = center.distanceTo(player.center);
+            double distance = center.distanceTo(gameRef.player!.center);
             double bombSpeed = distance * 2;
             gameRef.add(
               Bomb(
                 position: position,
                 angleDirection: BonfireUtil.angleBetweenPoints(
                   center,
-                  player.center,
+                  gameRef.player!.center,
                 ),
                 speed: bombSpeed,
               ),
@@ -51,7 +50,6 @@ class Skeleton extends SimpleEnemy with ObjectCollision {
 
   @override
   void die() {
-    enableCollision(false);
     animation?.playOnce(
       EnemiesSpriteSheet.skeletonDie,
       onFinish: removeFromParent,

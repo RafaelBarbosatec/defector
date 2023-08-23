@@ -1,11 +1,12 @@
 import 'package:bonfire/bonfire.dart';
+import 'package:defector/enemies/skeleton.dart';
 import 'package:defector/spritesheets/decoration_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
-import 'package:flutter/material.dart';
 
-class Bomb extends GameDecoration with Movement, Acceleration {
+class Bomb extends GameDecoration
+    with Movement, HandleForces, BlockMovementCollision {
   final double angleDirection;
-  bool explosed = false;
+  bool exploded = false;
   Bomb({
     required super.position,
     required this.angleDirection,
@@ -15,42 +16,58 @@ class Bomb extends GameDecoration with Movement, Acceleration {
           animation: DecorationSpriteSheet.bomb,
         ) {
     this.speed = speed;
+    addForce(ResistenceForce2D(id: 1, value: Vector2.all(3)));
   }
 
   @override
-  void update(double dt) {
-    if (speed == 0 && !explosed) {
-      explosed = true;
-      playSpriteAnimationOnce(
-        DecorationSpriteSheet.bomb,
-        onFinish: _explose,
-      );
+  Future<void> onLoad() {
+    add(RectangleHitbox(size: size));
+    return super.onLoad();
+  }
+
+  @override
+  bool onBlockMovement(Set<Vector2> intersectionPoints, GameComponent other) {
+    if (other is Skeleton) {
+      return false;
     }
-    super.update(dt);
+
+    if (other is Player) {
+      if (!exploded) {
+        _explode();
+      }
+      return false;
+    }
+    return super.onBlockMovement(intersectionPoints, other);
   }
 
   @override
   void onMount() {
-    applyAccelerationByAngle(-2, angleDirection, stopWhenSpeedZero: true);
+    moveFromAngle(angleDirection);
     super.onMount();
   }
 
-  void _explose() {
+  void _execExplode() {
     Rect rectExplosion = Rect.fromCenter(
       center: center.toOffset(),
       width: width * 2,
       height: height * 2,
     );
-    gameRef.visibleAttackables().forEach((e) {
+    gameRef.attackables(onlyVisible: true).forEach((e) {
       if (e.toRect().overlaps(rectExplosion)) {
         e.receiveDamage(AttackFromEnum.ENEMY, 30, 'bomb');
       }
     });
-    gameRef.camera.shake(intensity: 2);
+    gameRef.bonfireCamera.shake(intensity: 1);
     playSpriteAnimationOnce(
       DecorationSpriteSheet.explosion,
       onFinish: removeFromParent,
     );
     Sounds.explosion();
+  }
+
+  void _explode() {
+    exploded = true;
+    stopMove();
+    _execExplode();
   }
 }

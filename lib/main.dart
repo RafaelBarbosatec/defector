@@ -21,7 +21,7 @@ import 'package:flutter/services.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  BonfireInjector.instance.put((i) => PlayerInventory());
+  BonfireInjector.instance.putSingleton((i) => PlayerInventory());
   Sounds.initialize();
   runApp(const MyApp());
 }
@@ -100,7 +100,9 @@ class Game extends StatelessWidget {
             ),
             player: LittleEvil(position: Vector2.all(48)),
             cameraConfig: CameraConfig(
-              setZoomLimitToFitMap: true,
+              moveOnlyMapArea: true,
+              zoom: getGameZoom(MediaQuery.of(context).size.toVector2()),
+              startFollowPlayer: false,
             ),
             overlayBuilderMap: {
               'player_interface': ((context, game) => PlayerInterface(game))
@@ -116,14 +118,19 @@ class Game extends StatelessWidget {
               ),
             ),
             onReady: (game) {
-              Sounds.playBackgroundSound();
+              // Sounds.playBackgroundSound();
             },
             onDispose: () {
-              Sounds.stopBackgroundSound();
+              // Sounds.stopBackgroundSound();
             },
           ),
         ),
       ),
     );
   }
+}
+
+double getGameZoom(Vector2 size) {
+  final maxSide = min(size.x, size.y);
+  return maxSide / CameraSensor.sizeScreen;
 }

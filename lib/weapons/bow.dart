@@ -7,6 +7,7 @@ import 'package:defector/weapons/weapon.dart';
 import 'package:defector/weapons/weapons_sprite_sheet.dart';
 
 class Bow extends Weapon {
+  bool delivered = false;
   Bow({
     required super.position,
   }) : super(
@@ -14,28 +15,31 @@ class Bow extends Weapon {
           sprite: WeaponsSpriteSheet.bowInFloor,
         );
 
+  LittleEvil? get user => followerTarget as  LittleEvil?;
+
   @override
   void update(double dt) {
-    if (followerTarget != null) {
-      switch ((followerTarget as Movement).lastDirection) {
+    followerOffset = Vector2.zero();
+    if (user != null) {
+      switch (user!.lastDirection) {
         case Direction.left:
-          followerOffset = Vector2(size.x * -1, 0);
-          isFlipHorizontally = true;
+          followerOffset = Vector2(0, 0);
+          _flipH();
           angle = 0;
           break;
         case Direction.right:
           followerOffset = Vector2(size.x, 0);
-          isFlipHorizontally = false;
+          _removeFlipH();
           angle = 0;
           break;
         case Direction.up:
           angle = pi / 2;
-          isFlipHorizontally = true;
-          followerOffset = Vector2(0, size.y * -1);
+          _flipH();
+          followerOffset = Vector2(size.x, 0);
           break;
         case Direction.down:
-          followerOffset = Vector2(0, size.y);
-          isFlipHorizontally = false;
+          followerOffset = Vector2(size.x, size.y);
+          _removeFlipH();
           angle = pi / 2;
           break;
         case Direction.upLeft:
@@ -53,14 +57,13 @@ class Bow extends Weapon {
 
   @override
   void onContact(GameComponent component) {
-    if (component is LittleEvil) {
-      if (followerTarget == null) {
-        Sounds.getItem();
-        component.iventory.incrementArrow(count: 5);
-      }
+    if (component is LittleEvil && !delivered) {
+      delivered = true;
+      Sounds.getItem();
+      component.setWeapon(this);
+      component.iventory.incrementArrow(count: 5);
       _changeSprite(WeaponsSpriteSheet.bowInHand);
-      followerTarget = component;
-      component.weapon = this;
+      setupFollower(target: component);
     }
   }
 
@@ -73,24 +76,37 @@ class Bow extends Weapon {
 
   @override
   void attack() {
-    if (followerTarget != null) {
-      LittleEvil player = followerTarget as LittleEvil;
+    if (user != null) {
+      LittleEvil player = user!;
 
       if (player.iventory.arrowCount > 0) {
         Sounds.bowAttack();
         player.iventory.decrementArrow();
         simpleAttackRangeByAngle(
-            damage: 10,
-            angle: player.lastDirection.toRadians(),
-            size: size,
-            attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
-            animation: WeaponsSpriteSheet.arrow.toAnimation(),
-            marginFromOrigin: -8,
-            speed: 300,
-            onDestroy: () {
-              Sounds.arrowHit();
-            });
+          damage: 10,
+          angle: player.lastDirection.toRadians(),
+          size: size,
+          attackFrom: AttackFromEnum.PLAYER_OR_ALLY,
+          animation: WeaponsSpriteSheet.arrow.toAnimation(),
+          marginFromOrigin: -8,
+          speed: 300,
+          onDestroy: () {
+            Sounds.arrowHit();
+          },
+        );
       }
+    }
+  }
+
+  void _flipH() {
+    if (!isFlippedHorizontally) {
+      flipHorizontallyAroundCenter();
+    }
+  }
+
+  void _removeFlipH() {
+    if (isFlippedHorizontally) {
+      flipHorizontallyAroundCenter();
     }
   }
 }

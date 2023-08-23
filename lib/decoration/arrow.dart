@@ -3,7 +3,7 @@ import 'package:defector/player/little_evil.dart';
 import 'package:defector/util/sounds.dart';
 import 'package:defector/weapons/weapons_sprite_sheet.dart';
 
-class Arrow extends GameDecoration with Sensor {
+class Arrow extends GameDecoration with Sensor<LittleEvil> {
   bool delivery = false;
   Arrow({required super.position})
       : super.withSprite(
@@ -12,10 +12,10 @@ class Arrow extends GameDecoration with Sensor {
         );
 
   @override
-  void onContact(GameComponent component) {
-    if (component is LittleEvil && !delivery) {
-      Sounds.getItem();
+  void onContact(LittleEvil component) {
+    if (!delivery) {
       delivery = true;
+      Sounds.getItem();
       component.iventory.incrementArrow(count: 5);
       removeFromParent();
     }
