@@ -4,7 +4,7 @@ import 'package:defector/spritesheets/decoration_spritesheet.dart';
 import 'package:defector/util/sounds.dart';
 
 class Bomb extends GameDecoration
-    with Movement, HandleForces, BlockMovementCollision {
+    with Movement, HandleForces, BlockMovementCollision, BouncingObject {
   final double angleDirection;
   bool exploded = false;
   Bomb({
@@ -32,9 +32,7 @@ class Bomb extends GameDecoration
     }
 
     if (other is Player) {
-      if (!exploded) {
-        _explode();
-      }
+      _explode();
       return false;
     }
     return super.onBlockMovement(intersectionPoints, other);
@@ -66,8 +64,10 @@ class Bomb extends GameDecoration
   }
 
   void _explode() {
-    exploded = true;
-    stopMove();
-    _execExplode();
+    if (!exploded) {
+      exploded = true;
+      stopMove();
+      _execExplode();
+    }
   }
 }

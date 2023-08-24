@@ -15,7 +15,7 @@ class Bow extends Weapon {
           sprite: WeaponsSpriteSheet.bowInFloor,
         );
 
-  LittleEvil? get user => followerTarget as  LittleEvil?;
+  LittleEvil? get user => followerTarget as LittleEvil?;
 
   @override
   void update(double dt) {
